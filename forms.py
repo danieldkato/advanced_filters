@@ -6,7 +6,10 @@ import operator
 from django import forms
 from django.conf import settings
 from django.contrib import admin
-from django.contrib.admin.util import get_fields_from_path
+try:
+    from django.contrib.admin.utils import get_fields_from_path
+except ImportError:
+    from django.contrib.admin.util import get_fields_from_path
 from django.db.models import Q, get_model, FieldDoesNotExist
 from django.db.models.fields import DateField
 from django.forms.formsets import formset_factory, BaseFormSet
