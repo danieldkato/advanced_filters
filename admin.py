@@ -51,8 +51,8 @@ class AdminAdvancedFiltersMixin(object):
     def __init__(self, *args, **kwargs):
         super(AdminAdvancedFiltersMixin, self).__init__(*args, **kwargs)
         # add list filters to filters
-        print(AdvancedListFilters)
-        print(self.list_filter)
+        #print(AdvancedListFilters)
+        #print(self.list_filter)
         self.list_filter = (AdvancedListFilters,) + self.list_filter
 
     def save_advanced_filter(self, request, form):
@@ -75,8 +75,12 @@ class AdminAdvancedFiltersMixin(object):
             logger.info('Failed saving advanced filter, params: %s', form.data)
 
     def adv_filters_handle(self, request, extra_context={}):
-        print(request)
+        #print(request)
+        """
         data = request.POST if request.REQUEST.get(
+            'action') == 'advanced_filters' else None
+        """
+        data = request.POST if request.POST.get(
             'action') == 'advanced_filters' else None
         adv_filters_form = self.advanced_filter_form(
             data=data, model_admin=self, extra_form=True)
